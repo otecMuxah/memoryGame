@@ -16,8 +16,7 @@ function buildTable() {
       }
       item.url = "https://kde.link/test/" + counter + ".png";
       secItem.url = "https://kde.link/test/" + counter + ".png";
-      inImages.push(item);
-      inImages.push(secItem);
+      inImages.push(item, secItem);
       counter++;
     }
     inImages.shuffle = function () {
