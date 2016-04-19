@@ -1,14 +1,12 @@
 function buildTable() {
   var inImages = [],
-    index, tableSize, result,
+    index, result, timer,
     choises = [],
     html = "",
     counter = 0;
 
   $.getJSON('https://kde.link/test/get_field_size.php', function (data) {
-    tableSize = data;
-    console.log(tableSize);
-    var imagesNum = tableSize.width * tableSize.height;
+    var imagesNum = data.width * data.height;
 
     for (index = 0; index < imagesNum / 2; index++) {
       var item = {};
@@ -30,9 +28,9 @@ function buildTable() {
     inImages.shuffle();
 
     counter = 0;
-    for (var i = 0; i < tableSize.height; i++) { // build table with images
+    for (var i = 0; i < data.height; i++) { // build table with images
       html += "<tr>";
-      for (var j = 0; j < tableSize.width; j++) {
+      for (var j = 0; j < data.width; j++) {
         html += "<td><img src=" + inImages[counter].url + "></td>";
         counter++;
       }
@@ -41,28 +39,45 @@ function buildTable() {
     $(".grid").html(html);
     $("td").append("<div calss='hider'>?</div>");
 
-    
-    $(".grid td").click(function (e) {
-      $(this).addClass("selected");
-      choises.push(e.currentTarget);
+    counter = 0;
+    $(".grid").on("click", "td", function (e) {
+
+      if (timer) {
+        return;
+      }; // prevent more than two open images
+      if (e.target.tagName === "IMG") {
+        return;
+      }
+
+      var parent = e.target.parentNode;
+      choises.push(e.target.parentNode);
       console.log(choises);
-      $(e.currentTarget.lastElementChild).hide();
-      setTimeout (function (){
-        if (choises.length === 2) {
-          result = choises[0].childNodes[0].currentSrc === choises[1].childNodes[0].currentSrc;
-          console.log(result);
-          if (!result) {
+      $(parent.lastElementChild).hide();
+
+      if (choises.length === 2) {
+        timer = true;
+        result = choises[0].childNodes[0].currentSrc === choises[1].childNodes[0].currentSrc;
+        console.log(result);
+        if (!result) {
+          setTimeout(function () {
             $(choises[0].lastElementChild).show();
             $(choises[1].lastElementChild).show();
             choises = [];
-          } else {
-            $(choises[0]).off("click");
-            $(choises[1]).off("click");
-            choises = [];
-          }
+            timer = false;
+          }, 1000);
+        } else {
+          choises = [];
+          timer = false;
+          counter += 2;
         }
-      }, 1000);
+      }
+      console.log(counter);
+      if (counter === imagesNum) {
+        alert("Victory");
+      }
     });
+
+
   });
 }
 buildTable();
