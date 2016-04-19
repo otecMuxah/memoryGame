@@ -25,7 +25,7 @@ function buildTable() {
         return 0.5 - Math.random();
       });
     };
-    inImages.shuffle(); // randomize input images
+    inImages.shuffle();
 
     counter = 0;
     for (var i = 0; i < data.height; i++) { // build table with images
@@ -37,22 +37,21 @@ function buildTable() {
       html += "</tr>";
     }
     $(".grid").html(html);
-    $("td").append("<div>?</div>");
+    $("td").append("<div calss='hider'>?</div>");
 
     counter = 0;
     $(".grid").on("click", "td", function (e) {
-
-      if (timer || e.target.tagName === "IMG") { // prevent more than two open images
+      if (timer || e.target.tagName === "IMG") {
         return;
-      }; 
-      
+      };
       if (e.target.tagName === "DIV") {
-        var td = e.target.parentNode;
-        choises.push(td);
-        $(td.lastElementChild).hide();
+        var parent = e.target.parentNode;
+        choises.push(parent);
+        console.log(choises);
+        $(parent.lastElementChild).hide();
         if (choises.length === 2) {
           timer = true;
-          result = choises[0].children[0].currentSrc === choises[1].children[0].currentSrc;
+          result = choises[0].childNodes[0].currentSrc === choises[1].childNodes[0].currentSrc;
           console.log(result);
           if (!result) {
             setTimeout(function () {
@@ -68,7 +67,7 @@ function buildTable() {
           }
         }
         console.log(counter);
-        if (counter === imagesNum) { //play again ?
+        if (counter === imagesNum) {
           var playAgain = confirm("Victory !!! Play again ?");
           if (playAgain) {
             counter = 0;
