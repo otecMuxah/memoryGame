@@ -41,43 +41,43 @@ function buildTable() {
 
     counter = 0;
     $(".grid").on("click", "td", function (e) {
-
       if (timer) {
         return;
       }; // prevent more than two open images
       if (e.target.tagName === "IMG") {
         return;
       }
-
-      var parent = e.target.parentNode;
-      choises.push(e.target.parentNode);
-      console.log(choises);
-      $(parent.lastElementChild).hide();
-
-      if (choises.length === 2) {
-        timer = true;
-        result = choises[0].childNodes[0].currentSrc === choises[1].childNodes[0].currentSrc;
-        console.log(result);
-        if (!result) {
-          setTimeout(function () {
-            $(choises[0].lastElementChild).show();
-            $(choises[1].lastElementChild).show();
+      if (e.target.tagName === "DIV") {
+        var parent = e.target.parentNode;
+        choises.push(e.target.parentNode);
+        console.log(choises);
+        $(parent.lastElementChild).hide();
+        if (choises.length === 2) {
+          timer = true;
+          result = choises[0].childNodes[0].currentSrc === choises[1].childNodes[0].currentSrc;
+          console.log(result);
+          if (!result) {
+            setTimeout(function () {
+              $(choises[0].lastElementChild).show();
+              $(choises[1].lastElementChild).show();
+              choises = [];
+              timer = false;
+            }, 1000);
+          } else {
             choises = [];
             timer = false;
-          }, 1000);
-        } else {
-          choises = [];
-          timer = false;
-          counter += 2;
+            counter += 2;
+          }
+        }
+        console.log(counter);
+        if (counter === imagesNum) {
+          var playAgain = confirm("Victory !!! Play again ?");
+          if (playAgain) {
+            buildTable();
+          }
         }
       }
-      console.log(counter);
-      if (counter === imagesNum) {
-        alert("Victory");
-      }
     });
-
-
   });
 }
 buildTable();

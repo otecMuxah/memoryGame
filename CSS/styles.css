@@ -5,10 +5,6 @@ td {
   position: relative;
 }
 
-.grid img {
-  opacity: 1;
-}
-
 td div {
   background: red;
   position: absolute;
