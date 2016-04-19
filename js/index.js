@@ -9,13 +9,11 @@ function buildTable() {
     var imagesNum = data.width * data.height;
 
     for (index = 0; index < imagesNum / 2; index++) {
-      var item = {};
-      var secItem = {};
+      var item, secItem ;
       if (index % 10 === 0) {
         counter = 0;
       }
-      item.url = "https://kde.link/test/" + counter + ".png";
-      secItem.url = "https://kde.link/test/" + counter + ".png";
+      item = secItem = "https://kde.link/test/" + counter + ".png";
       inImages.push(item, secItem);
       counter++;
     }
@@ -30,7 +28,7 @@ function buildTable() {
     for (var i = 0; i < data.height; i++) { // build table with images
       html += "<tr>";
       for (var j = 0; j < data.width; j++) {
-        html += "<td><img src=" + inImages[counter].url + "><div>?</div></td>";
+        html += "<td><img src=" + inImages[counter] + "><div>?</div></td>";
         counter++;
       }
       html += "</tr>";
