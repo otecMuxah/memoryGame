@@ -40,16 +40,16 @@ function buildTable() {
    
     counter = 0;
     $(".grid").on("click", "td", function (e) {
-      if (timer || e.target.tagName === "IMG") {
+      if (timer || e.target.tagName !== "DIV") {
         return;
       };
-      if (e.target.tagName === "DIV") {
         var parent = e.target.parentNode;
+      
         choises.push(parent);
         $(parent.lastElementChild).hide();
         if (choises.length === 2) {
           timer = true;
-          result = choises[0].childNodes[0].currentSrc === choises[1].childNodes[0].currentSrc;
+          result = choises[0].children[0].currentSrc === choises[1].children[0].currentSrc;
           if (!result) {
             setTimeout(function () {
               $(choises[0].lastElementChild).show();
@@ -70,8 +70,6 @@ function buildTable() {
             buildTable();
           }
         }
-      }
-
     });
   });
 }
