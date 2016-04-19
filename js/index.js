@@ -63,7 +63,6 @@ function buildTable() {
             counter += 2;
           }
         }
-        console.log(counter);
         if (counter === imagesNum) {
           var playAgain = confirm("Victory !!! Play again ?");
           if (playAgain) {
