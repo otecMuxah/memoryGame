@@ -42,12 +42,10 @@ function buildTable() {
     counter = 0;
     $(".grid").on("click", "td", function (e) {
 
-      if (timer) { // prevent more than two open images
+      if (timer || e.target.tagName === "IMG") { // prevent more than two open images
         return;
       }; 
-      if (e.target.tagName === "IMG") {// prevent click on open images
-        return;
-      }
+      
       if (e.target.tagName === "DIV") {
         var parent = e.target.parentNode;
         choises.push(e.target.parentNode);
