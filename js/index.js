@@ -47,7 +47,7 @@ function buildTable() {
       }; 
       
       if (e.target.tagName === "DIV") {
-        var td = e.target.parentNode;
+        var td = $(e.target).closest('td');
         choises.push(td);
         $(td.lastElementChild).hide();
         if (choises.length === 2) {
