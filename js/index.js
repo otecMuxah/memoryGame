@@ -31,14 +31,13 @@ function buildTable() {
     for (var i = 0; i < data.height; i++) { // build table with images
       html += "<tr>";
       for (var j = 0; j < data.width; j++) {
-        html += "<td><img src=" + inImages[counter].url + "></td>";
+        html += "<td><img src=" + inImages[counter].url + "><div>?</div></td>";
         counter++;
       }
       html += "</tr>";
     }
     $(".grid").html(html);
-    $("td").append("<div>?</div>");
-
+   
     counter = 0;
     $(".grid").on("click", "td", function (e) {
       if (timer || e.target.tagName === "IMG") {
