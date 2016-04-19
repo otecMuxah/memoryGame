@@ -47,9 +47,9 @@ function buildTable() {
       }; 
       
       if (e.target.tagName === "DIV") {
-        var parent = e.target.parentNode;
-        choises.push(parent);
-        $(parent.lastElementChild).hide();
+        var td = e.target.parentNode;
+        choises.push(td);
+        $(td.lastElementChild).hide();
         if (choises.length === 2) {
           timer = true;
           result = choises[0].childNodes[0].currentSrc === choises[1].childNodes[0].currentSrc;
