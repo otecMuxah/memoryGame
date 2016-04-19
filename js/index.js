@@ -73,6 +73,7 @@ function buildTable() {
         if (counter === imagesNum) {
           var playAgain = confirm("Victory !!! Play again ?");
           if (playAgain) {
+            counter = 0;
             buildTable();
           }
         }
