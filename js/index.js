@@ -25,7 +25,7 @@ function buildTable() {
         return 0.5 - Math.random();
       });
     };
-    inImages.shuffle();
+    inImages.shuffle(); // randomize input images
 
     counter = 0;
     for (var i = 0; i < data.height; i++) { // build table with images
@@ -37,15 +37,15 @@ function buildTable() {
       html += "</tr>";
     }
     $(".grid").html(html);
-    $("td").append("<div calss='hider'>?</div>");
+    $("td").append("<div>?</div>");
 
     counter = 0;
     $(".grid").on("click", "td", function (e) {
 
-      if (timer) {
+      if (timer) { // prevent more than two open images
         return;
-      }; // prevent more than two open images
-      if (e.target.tagName === "IMG") {
+      }; 
+      if (e.target.tagName === "IMG") {// prevent click on open images
         return;
       }
       if (e.target.tagName === "DIV") {
@@ -71,7 +71,7 @@ function buildTable() {
           }
         }
         console.log(counter);
-        if (counter === imagesNum) {
+        if (counter === imagesNum) { //play again ?
           var playAgain = confirm("Victory !!! Play again ?");
           if (playAgain) {
             counter = 0;
