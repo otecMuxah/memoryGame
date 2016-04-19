@@ -46,12 +46,10 @@ function buildTable() {
       if (e.target.tagName === "DIV") {
         var parent = e.target.parentNode;
         choises.push(parent);
-        console.log(choises);
         $(parent.lastElementChild).hide();
         if (choises.length === 2) {
           timer = true;
           result = choises[0].childNodes[0].currentSrc === choises[1].childNodes[0].currentSrc;
-          console.log(result);
           if (!result) {
             setTimeout(function () {
               $(choises[0].lastElementChild).show();
