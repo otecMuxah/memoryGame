@@ -52,7 +52,7 @@ function buildTable() {
         $(td.lastElementChild).hide();
         if (choises.length === 2) {
           timer = true;
-          result = choises[0].childNodes[0].currentSrc === choises[1].childNodes[0].currentSrc;
+          result = choises[0].children[0].currentSrc === choises[1].children[0].currentSrc;
           console.log(result);
           if (!result) {
             setTimeout(function () {
