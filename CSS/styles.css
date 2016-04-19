@@ -1,0 +1,21 @@
+td {
+  height: 102px;
+  width: 98px;
+  border: 1px solid #fff;
+  position: relative;
+}
+
+.grid img {
+  opacity: 1;
+}
+
+td div {
+  background: red;
+  position: absolute;
+  height: 102px;
+  width: 98px;
+  top: 0;
+  left: 0;
+  font-size: 72px;
+  text-align: center;
+}
