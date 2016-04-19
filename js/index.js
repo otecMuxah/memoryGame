@@ -37,7 +37,7 @@ function buildTable() {
       html += "</tr>";
     }
     $(".grid").html(html);
-    $("td").append("<div calss='hider'>?</div>");
+    $("td").append("<div>?</div>");
 
     counter = 0;
     $(".grid").on("click", "td", function (e) {
