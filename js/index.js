@@ -41,6 +41,7 @@ function buildTable() {
 
     counter = 0;
     $(".grid").on("click", "td", function (e) {
+
       if (timer) {
         return;
       }; // prevent more than two open images
@@ -78,6 +79,7 @@ function buildTable() {
           }
         }
       }
+
     });
   });
 }
